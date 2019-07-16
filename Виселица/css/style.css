@@ -1,0 +1,54 @@
+.game{
+    position: absolute;
+    /*border: solid black 1px;*/
+    margin-left: 35%;
+    margin-top:10%;
+}
+.bar{
+    position: relative;
+    border: solid rgba(0, 149, 218, 0.733) 2px; 
+    height: 60px;
+    width: 400px;
+    font-size: 24px;
+    border-radius: 5px;
+    text-align: center;
+}
+.words{
+    position: relative;
+    font-size: 52px;
+    color: red;
+    text-align: center;
+}
+.answer{
+    position: relative;
+    width: 52px;
+    height: 52px;
+    text-align: center;
+    font-size: 62px;
+    margin-left: 41%;
+    border: solid rgba(0, 149, 218, 0.733) 2px; 
+}
+
+.button{
+    position: relative;
+    margin-left: 33%;
+    width:120px;  
+    height:40px; 
+    background-color:rgb(0, 255, 21);
+    border: solid rgba(0, 149, 218, 0.733) 2px; 
+    border-radius: 5px;
+}
+.NewGame{
+    position: relative;
+    margin-left: 33%;
+    border-radius: 3px;
+    width:120px;  
+    height:40px; 
+    background-color:rgb(0, 255, 21);
+    border: solid rgba(0, 149, 218, 0.733) 2px; 
+    border-radius: 5px;
+}
+.canvas{
+    position: relative;
+    margin-left: 20%;   
+}

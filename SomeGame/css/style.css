@@ -1,0 +1,10 @@
+canvas {
+    border: 1px solid black;
+}
+
+.error{
+    height: 600px;
+    width: 330px;
+    border: 1px solid red;
+    float: right;
+}

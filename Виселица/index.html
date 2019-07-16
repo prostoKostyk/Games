@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Виселица </title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body> 
+  <div class = game>
+  <p><input type ='button' class = 'NewGame' value = "Новая игра" onclick = NewGame()></p>
+  <div class = 'bar' id= "bar"></div> 
+  <div class = 'words' id= "div"></div> 
+<p><input class = 'answer' type = 'text' id = "text" maxlength="1"></p>
+<p><input type ='button' class = 'button' value = "Проверить" onclick = answerCheck()></p>
+<canvas id = "canvas" class="canvas" width = "200" height="200"></canvas>
+</div>
+    <script src = "js/script.js"></script>
+</body>
+</html>
