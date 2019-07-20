@@ -5,7 +5,6 @@
     function setKey(event, status) {
         var code = event.keyCode;
         var key;
-
         switch(code) {
         case 32:
             key = 'SPACE'; break;
@@ -40,6 +39,7 @@
     window.input = {
         isDown: function(key) {
             return pressedKeys[key.toUpperCase()];
-        }
+        },
+   
     };
 })();
