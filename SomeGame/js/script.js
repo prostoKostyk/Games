@@ -36,7 +36,8 @@ resources.load([
     'img/sky.jpg',
     'img/island.png',
     'img/Player2.png',
-    'img/enemy.png'
+    'img/enemy.png',
+    'img/bullet.png'
 ]);
 resources.onReady(start);
  player = {
@@ -62,11 +63,21 @@ resources.onReady(start);
     leftStopSprite:new Sprite('img/enemy.png', [0, 84], [62, 70], 6, [0])
 }
 
-island1X = 300;
-island1Y = 451;
 var island = {
-    pos: [island1X, island1Y],  
-    sprite: new Sprite('img/island.png', [0, 0], [162, 73], 6, [0])
+    pos: [300, 451],  
+    sprite: new Sprite('img/island.png', [0, 0], [162, 73], 6, [0]),
+    
+}
+var bullet = {
+    pos: [3000, 3000],  
+    sprite: new Sprite('img/bullet.png', [0, 0], [30, 9], 6, [0]),
+    direction: "right",
+    right: false,
+    left: false, 
+    rightSprite: new Sprite('img/bullet.png', [0, 0], [30, 9], 6, [0]),
+    leftSprite: new Sprite('img/bullet.png', [0, 0], [30, 9], 6, [0]),
+    rightStopSprite: new Sprite('img/bullet.png', [0, 0], [30, 9], 6, [0]),
+    leftStopSprite: new Sprite('img/bullet.png', [0, 0], [30, 9], 6, [0])    
 }
 
 function start() { 
@@ -87,13 +98,15 @@ function updateEntities(dt) {  // Update the player sprite animation
     player.sprite.update(dt); 
     island.sprite.update(dt);   
     enemy.sprite.update(dt); 
+    bullet.sprite.update(dt);
 }
 function render() {    
     ctx.fillStyle = background; 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     renderEntity(island);     
     renderEntity(player);      
-    renderEntity(enemy);    
+    renderEntity(enemy);   
+    renderEntity(bullet);   
 };
 function PlayerPosChange(x,y,player){
     player.pos[0]+=x; 
@@ -198,15 +211,22 @@ function handleInput() {
 }
 
 let f = 0;
+f2 = 0;
 function enemyMove() {
     sum =  player.pos[0] - enemy.pos[0];
     razn = enemy.pos[0] - player.pos[0];
-    if ((razn < 200 && razn > 0 || sum < 200 && sum > 0) && enemy.pos[1] == player.pos[1] + 50 ){
+    if ((razn < 200 && razn > 0 || sum < 200 && sum > 0) && enemy.pos[1] == player.pos[1] + 50 ){ // если враг близко к игроку и при этом враг и игрок находятся на одном уровне
         FigureMove(enemy, 'stop', enemySpeed);
+        if (f2 == 0){
+        bullet.pos[0] = enemy.pos[0];
+        bullet.pos[1] = enemy.pos[1]+35;
+        }
+        enemyShoot()
+        f2++;
         return;
-    }
+    }    
     f++;  
-    if (f < 100){
+    if (f < 100){ 
     FigureMove(enemy, 'right', enemySpeed);
     return;
     }
@@ -215,4 +235,22 @@ function enemyMove() {
     return;
     }
     f = 0;
+    f2 = 0;
+}
+
+function enemyShoot(){
+    if (player.pos[0] < enemy.pos[0]){
+    if (bullet.pos[0] > player.pos[0]+60)
+    FigureMove(bullet, 'left', enemySpeed);
+    else {
+    bullet.pos[0] = 3000;
+    f2 = 0;
+    }
+    }
+    else {
+        if (bullet.pos[0] < player.pos[0])
+        FigureMove(bullet, 'right', enemySpeed);
+        else 
+        bullet.pos[0] = 3000;
+    }
 }
